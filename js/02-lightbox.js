@@ -19,33 +19,21 @@ galleryRef.innerHTML = addMarkup;
 galleryRef.addEventListener("click", onImgClick);
 
 function onImgClick(event) {
-    blockAction(event);
 
     if (event.target.nodeName !== "IMG") {
         return
     }
 
-    let lightbox = new SimpleLightbox('.gallery a', {
-        captioDelay: 250,
-        captionsData: 'alt',
-    });
-      
-    lightbox.on('show.simplelightbox', function (event) {
-    const instance = basicLightbox.create(`
-    <img src="${event.target.dataset.source}" width="800" height="600">
-`)
-        instance.open();
-    
-    }
-    )
-    
+};
 
-    galleryRef.addEventListener("keydown", (event) => {
-        if (event.code === "Escape") {
-            instance.close()
-        }
-    });
-}
-function blockAction(event) {
-    event.preventDefault();
-}
+
+let lightbox = new SimpleLightbox('.gallery a', {
+    captioDelay: 250,
+    captionsData: 'alt',
+});      
+
+lightbox.on('show.simplelightbox', function (event) {
+    basiclightbox.create(`
+   <img src="${event.target.dataset.source}" width="800" height="600">
+`)
+});
