@@ -25,16 +25,20 @@ function onImgClick(event) {
         return
     }
 
-    const lightbox = new SimpleLightbox('.gallery a', {
+    let lightbox = new SimpleLightbox('.gallery a', {
         captioDelay: 250,
         captionsData: 'alt',
     });
-        const instance = basicLightbox.create(`
+      
+    lightbox.on('show.simplelightbox', function (event) {
+    const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}" width="800" height="600">
 `)
-
-instance.show()
-
+        instance.open();
+    
+    }
+    )
+    
 
     galleryRef.addEventListener("keydown", (event) => {
         if (event.code === "Escape") {
