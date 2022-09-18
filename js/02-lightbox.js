@@ -29,12 +29,12 @@ function onImgClick(event) {
         captioDelay: 250,
         captionsData: 'alt',
     });
-
-    const instance = lightbox.create(`
+        const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}" width="800" height="600">
 `)
 
 instance.show()
+
 
     galleryRef.addEventListener("keydown", (event) => {
         if (event.code === "Escape") {
