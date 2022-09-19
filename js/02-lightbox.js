@@ -1,39 +1,18 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-
 console.log(galleryItems);
-const galleryRef = document.querySelector(".gallery"); 
+const galleryRef = document.querySelector(".gallery");
 function createMarkup(items) {
     return items.map((item) => `<li>
-<a class="gallery__item" href="large-image.jpg">
-  <img class="gallery__image" src="${item.preview}" alt="${item.description}" 
-  data-source="${item.original}" />
+<a class="gallery__item" href="${item.original}">
+  <img class="gallery__image" src="${item.preview}" alt="${item.description}" />
 </a>
-</li>`).join("");
-    
+</li>`).join(" ");
 }
-
 const addMarkup = createMarkup(galleryItems);
-
-galleryRef.innerHTML = addMarkup;
-galleryRef.addEventListener("click", onImgClick);
-
-function onImgClick(event) {
-
-    if (event.target.nodeName !== "IMG") {
-        return
-    }
-
-};
-
-
-let lightbox = new SimpleLightbox('.gallery a', {
-    captioDelay: 250,
+galleryRef.insertAdjacentHTML('beforeend',addMarkup);
+const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
-});      
-
-lightbox.on('show.simplelightbox', function (event) {
-    basiclightbox.create(`
-   <img src="${event.target.dataset.source}" width="800" height="600">
-`)
+    captionDelay: `250`,
+    captionPosition: 'bottom',
 });
